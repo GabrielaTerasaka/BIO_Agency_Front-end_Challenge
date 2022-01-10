@@ -1,8 +1,9 @@
 import "./LinkDisplay.scss";
 import { useState, useEffect } from "react";
 
-const LinkDisplay = ({ long, short }) => {
+const LinkDisplay = ({ link }) => {
   const [isCopied, setIsCopied] = useState(false);
+  const { full_short_link, original_link } = link.result;
 
   function handleCopy(shortLink) {
     navigator.clipboard.writeText(shortLink);
@@ -10,12 +11,12 @@ const LinkDisplay = ({ long, short }) => {
   }
   return (
     <div className="link">
-      <p className="link__long">{long}</p>
-      <p className="link__short">{short}</p>
+      <p className="link__long">{original_link}</p>
+      <p className="link__short">{full_short_link}</p>
       <button
         className="form__button"
         onClick={() => {
-          handleCopy(short);
+          handleCopy(full_short_link);
         }}
       >
         {isCopied ? "Copied!" : "Copy Link"}

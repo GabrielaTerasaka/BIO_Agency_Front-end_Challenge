@@ -1,15 +1,15 @@
-import { DISPLAY_SHORT_LINK } from "./actions";
+import { ADD_NEW_LINK } from "./actions";
 
-const initialState = { link: "", hasLink: false };
+const initialState = [];
 
-export const shorterLink = (state = initialState, action) => {
+export const links = (state = initialState, action) => {
   const { type, payload } = action;
 
   switch (type) {
-    case DISPLAY_SHORT_LINK: {
+    case ADD_NEW_LINK: {
       const { link } = payload;
 
-      return link;
+      return state.concat(link);
     }
     default:
       return state;

@@ -1,6 +1,6 @@
-export const DISPLAY_SHORT_LINK = "DISPLAY_SHORT_LINK";
+export const ADD_NEW_LINK = "ADD_NEW_LINK";
 
-export const displayShortLink = (link) => ({
-  type: DISPLAY_SHORT_LINK,
+export const addNewLink = (link) => ({
+  type: ADD_NEW_LINK,
   payload: { link },
 });

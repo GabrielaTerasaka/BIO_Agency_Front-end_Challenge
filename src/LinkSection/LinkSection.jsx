@@ -2,13 +2,15 @@ import "./LinkSection.scss";
 import LinkDisplay from "../LinkDisplay";
 import LinkForm from "../LinkForm";
 
-const LinkSection = () => {
-  const hasLink = false;
+import { connect } from "react-redux";
+
+const LinkSection = ({ links }) => {
+  console.log(links);
   return (
     <section className="link-section">
       <LinkForm />
 
-      {!hasLink && (
+      {links.length === 0 && (
         <div className="link-section__wrapper">
           <h2 className="link-section">Advanced Statistics</h2>
           <p className="link-section__text">
@@ -17,9 +19,13 @@ const LinkSection = () => {
           </p>
         </div>
       )}
-      {hasLink && <LinkDisplay long="abcdef" short="abc" />}
+      {links.length > 0 && links.map((link) => <LinkDisplay link={link} />)}
     </section>
   );
 };
 
-export default LinkSection;
+const mapStateToProps = (state) => ({
+  links: state.links,
+});
+
+export default connect(mapStateToProps, null)(LinkSection);

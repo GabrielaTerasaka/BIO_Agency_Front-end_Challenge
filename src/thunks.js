@@ -1,4 +1,4 @@
-import { displayShortLink } from "./actions";
+import { addNewLink } from "./actions";
 
 export const getLink = (link) => async (dispatch) => {
   try {
@@ -6,7 +6,9 @@ export const getLink = (link) => async (dispatch) => {
       `https://api.shrtco.de/v2/shorten?url=${link}`
     );
     const newLink = await response.json();
-    dispatch(displayShortLink(newLink));
+    if (newLink.ok === true) {
+      dispatch(addNewLink(newLink));
+    }
   } catch (e) {
     console.log(e);
   }
