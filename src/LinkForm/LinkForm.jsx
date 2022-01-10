@@ -3,8 +3,9 @@ import { useState } from "react";
 
 import { connect } from "react-redux";
 import { getLink } from "../thunks";
+import { updateMessage } from "../actions";
 
-const LinkForm = ({ onGetLinkPressed }) => {
+const LinkForm = ({ onGetLinkPressed, onEmptyInput }) => {
   const [inputValue, setInputValue] = useState("");
 
   return (
@@ -20,8 +21,12 @@ const LinkForm = ({ onGetLinkPressed }) => {
         className="form__button"
         onClick={(e) => {
           e.preventDefault();
-          onGetLinkPressed(inputValue);
-          setInputValue("");
+          if (inputValue === "") {
+            onEmptyInput({ ok: false });
+          } else {
+            onGetLinkPressed(inputValue);
+            setInputValue("");
+          }
         }}
       >
         Shorten it!
@@ -32,6 +37,7 @@ const LinkForm = ({ onGetLinkPressed }) => {
 
 const mapDispatchToProps = (dispatch) => ({
   onGetLinkPressed: (link) => dispatch(getLink(link)),
+  onEmptyInput: (link) => dispatch(updateMessage(link)),
 });
 
 export default connect(null, mapDispatchToProps)(LinkForm);

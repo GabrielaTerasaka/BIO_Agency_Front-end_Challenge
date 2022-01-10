@@ -1,4 +1,4 @@
-import { addNewLink } from "./actions";
+import { addNewLink, updateMessage } from "./actions";
 
 export const getLink = (link) => async (dispatch) => {
   try {
@@ -8,6 +8,9 @@ export const getLink = (link) => async (dispatch) => {
     const newLink = await response.json();
     if (newLink.ok === true) {
       dispatch(addNewLink(newLink));
+      dispatch(updateMessage(newLink));
+    } else {
+      dispatch(updateMessage(newLink));
     }
   } catch (e) {
     console.log(e);

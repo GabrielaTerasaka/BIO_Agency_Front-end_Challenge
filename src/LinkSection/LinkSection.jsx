@@ -4,12 +4,18 @@ import LinkForm from "../LinkForm";
 
 import { connect } from "react-redux";
 
-const LinkSection = ({ links }) => {
+const LinkSection = ({ links, message }) => {
   console.log(links);
   return (
     <section className="link-section">
       <LinkForm />
-
+      {message && (
+        <p className="link-section__message">
+          {message === "true"
+            ? "Success!"
+            : "Fail! Either the URL is empty or invalid"}
+        </p>
+      )}
       {links.length === 0 && (
         <div className="link-section__wrapper">
           <h2 className="link-section">Advanced Statistics</h2>
@@ -19,13 +25,15 @@ const LinkSection = ({ links }) => {
           </p>
         </div>
       )}
-      {links.length > 0 && links.map((link) => <LinkDisplay link={link} />)}
+      {links.length > 0 &&
+        [...links].reverse().map((link) => <LinkDisplay link={link} />)}
     </section>
   );
 };
 
 const mapStateToProps = (state) => ({
   links: state.links,
+  message: state.message,
 });
 
 export default connect(mapStateToProps, null)(LinkSection);

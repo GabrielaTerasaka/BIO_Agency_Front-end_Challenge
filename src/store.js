@@ -1,12 +1,12 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
-import { links } from "./reducers";
+import { links, message } from "./reducers";
 import thunk from "redux-thunk";
 
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import autoMergeLevel2 from "redux-persist/es/stateReconciler/autoMergeLevel2";
 
-const reducers = { links };
+const reducers = { links, message };
 const rootReducer = combineReducers(reducers);
 
 const persistConfig = {
