@@ -1,6 +1,8 @@
 import { DISPLAY_SHORT_LINK } from "./actions";
 
-export const shorterLink = (state, action) => {
+const initialState = { link: "", hasLink: false };
+
+export const shorterLink = (state = initialState, action) => {
   const { type, payload } = action;
 
   switch (type) {
