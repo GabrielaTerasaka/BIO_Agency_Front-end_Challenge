@@ -1,0 +1,17 @@
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: space-between;
+  background-color: navy;
+  padding: 16px;
+  border-radius: 8px;
+  flex-wrap: wrap;
+
+  &__input {
+    width: 80%;
+    border-radius: 8px;
+    border: none;
+    padding: 0 16px;
+  }
+}

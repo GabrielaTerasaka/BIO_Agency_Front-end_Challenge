@@ -4,4 +4,13 @@
   box-sizing: border-box;
 }
 body {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+button {
+  border-radius: 8px;
+  padding: 8px 16px;
+  border: none;
+  background-color: cornflowerblue;
+  cursor: pointer;
 }
